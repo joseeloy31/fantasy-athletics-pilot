@@ -286,7 +286,7 @@ body {
     min-height: 55px;
     max-height: 55px;
     height: 55px;
-    padding: 10px 16px 0 24px;
+    padding: 10px 16px 0 px;
     display: flex;
     align-items: center;
 }
@@ -339,7 +339,6 @@ body {
     background-color: #5fc6a7;
     color: #ffffff;
 }
-
 /* 12. Responsive styles */
 
 /* Mobile (up to 767px) */
@@ -383,9 +382,15 @@ body {
     .tabs {
         padding: 10px 16px 0 12px;
     }
+    /* Aquí se modifica la lista de pestañas para ajustar el gap */
+    .tabs__list {
+        gap: 2%;
+    }
     .tabs__link {
         font-size: 12px;
-        padding: 0 10px;
+        padding: 0 6px;
+        line-height: 1.4;
+        white-space: normal;
     }
 }
 
@@ -395,7 +400,7 @@ body {
         padding-right: 18px;
     }
     .header__title {
-        font-size: 14px;          /* Increased tablet font size */
+        font-size: 14px;
         line-height: 1.3;
         margin-left: 18px;
         width: 120px;             /* Fixed width for tablet */
