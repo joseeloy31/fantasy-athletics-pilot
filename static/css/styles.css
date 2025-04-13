@@ -372,7 +372,7 @@ body {
     }
     .header__user-button {
         /* Reducimos el tamaño general y ancho máximo */
-        font-size: 11px;          /* Ahora el texto se muestra en 11px */
+        font-size: 9px;          /* Ahora el texto se muestra en 11px */
         width: 100px;             /* Máximo ancho de 100px */
         height: 30px;
         padding: 0 4px;           /* Menos padding lateral */
@@ -385,12 +385,12 @@ body {
     /* Ajustes para los íconos: tanto el del usuario como la flecha */
     .header__user-button-icon svg,
     .header__user-button-arrow svg {
-        width: 12px;
-        height: 12px;
+        width: 18px;
+        height: 18px;
     }
     .header__user-dropdown-item,
     .header__login-username {
-        font-size: 11px;
+        font-size: 12px;
     }
     .tabs {
         padding: 10px 16px 0 12px;
