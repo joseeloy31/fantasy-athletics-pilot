@@ -14,7 +14,7 @@ const fat_user = [
     },
     {
         email: 'jmoralesmw@gmail.com',
-        user_name: 'Julian',
+        user_name: 'Julian M',
         password: 'optijulian',
         user_type: 'user'
     },
@@ -97,6 +97,27 @@ document.addEventListener('DOMContentLoaded', function() {
             inputField.value = '';
         });
     });
+
+    // Listener for add new active tab and remove the of the others.
+    var tabsLinks = document.querySelectorAll('.tabs__link');
+    tabsLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            tabsLinks.forEach(function(item) {
+                item.classList.remove('tabs__link--active');
+            });
+            
+            this.classList.add('tabs__link--active');
+
+            var tabName = this.getAttribute('data-tab')
+            if (tabFunctions[tabName]) {
+                tabFunctions[tabName]();
+            }
+        });
+    });
+
+    loadMyTeamTab();
 });
 
 function getLoginCookie() {
@@ -141,7 +162,7 @@ document.addEventListener('click', function(e) {
         !userButton.contains(e.target)) {
         
         userDropdown.style.display = "none";
-    }
+    }    
 });
 
 function logoutUser() {
@@ -269,4 +290,143 @@ function triggerShake(element) {
     setTimeout(function() {
         element.classList.remove('shake');
     }, 300);
+}
+
+// TAB CONTENTS AREA
+var tabFunctions = {
+    myteam: loadMyTeamTab,
+    athletes: loadAthletesTab,
+    results: loadResultsTab,
+    standings: loadStandingsTab,
+    moregames: loadMoreGamesTab
+};
+
+function loadMyTeamTab() {
+    var container = document.getElementById("tabContent");
+    container.innerHTML = "";
+    container.appendChild(createUnderConstructionSVG("My Team"));
+}
+
+function loadAthletesTab() {
+    var container = document.getElementById("tabContent");
+    container.innerHTML = "";
+    container.appendChild(createUnderConstructionSVG("Athletes"));
+}
+
+function loadResultsTab() {
+    var container = document.getElementById("tabContent");
+    container.innerHTML = "";
+    container.appendChild(createUnderConstructionSVG("Results"));
+}
+
+function loadStandingsTab() {
+    var container = document.getElementById("tabContent");
+    container.innerHTML = "";
+    container.appendChild(createUnderConstructionSVG("Standings"));
+}
+
+function loadMoreGamesTab() {
+    var container = document.getElementById("tabContent");
+    container.innerHTML = "";
+    container.appendChild(createUnderConstructionSVG("More Games"));
+}
+
+function createUnderConstructionSVG(tabName) {
+    var svgNS = "http://www.w3.org/2000/svg";
+    var svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 600 400");
+
+    // Triángulo de obras (se usa el amarillo #ffff00 en relleno)
+    var triangle = document.createElementNS(svgNS, "polygon");
+    triangle.setAttribute("points", "300,50 500,350 100,350");
+    triangle.setAttribute("fill", "#ffff00");
+    triangle.setAttribute("stroke", "#ffff00");
+    triangle.setAttribute("stroke-width", "4");
+    svg.appendChild(triangle);
+
+    // Trabajador: cabezita (círculo)
+    var head = document.createElementNS(svgNS, "circle");
+    head.setAttribute("cx", "300");
+    head.setAttribute("cy", "200");
+    head.setAttribute("r", "20");
+    head.setAttribute("fill", "#000");
+    svg.appendChild(head);
+
+    // Cuerpo (línea)
+    var body = document.createElementNS(svgNS, "line");
+    body.setAttribute("x1", "300");
+    body.setAttribute("y1", "220");
+    body.setAttribute("x2", "300");
+    body.setAttribute("y2", "280");
+    body.setAttribute("stroke", "#000");
+    body.setAttribute("stroke-width", "4");
+    svg.appendChild(body);
+
+    // Brazo izquierdo
+    var leftArm = document.createElementNS(svgNS, "line");
+    leftArm.setAttribute("x1", "300");
+    leftArm.setAttribute("y1", "240");
+    leftArm.setAttribute("x2", "270");
+    leftArm.setAttribute("y2", "260");
+    leftArm.setAttribute("stroke", "#000");
+    leftArm.setAttribute("stroke-width", "4");
+    svg.appendChild(leftArm);
+
+    // Brazo derecho (sostiene la pala)
+    var rightArm = document.createElementNS(svgNS, "line");
+    rightArm.setAttribute("x1", "300");
+    rightArm.setAttribute("y1", "240");
+    rightArm.setAttribute("x2", "330");
+    rightArm.setAttribute("y2", "260");
+    rightArm.setAttribute("stroke", "#000");
+    rightArm.setAttribute("stroke-width", "4");
+    svg.appendChild(rightArm);
+
+    // Pierna izquierda
+    var leftLeg = document.createElementNS(svgNS, "line");
+    leftLeg.setAttribute("x1", "300");
+    leftLeg.setAttribute("y1", "280");
+    leftLeg.setAttribute("x2", "280");
+    leftLeg.setAttribute("y2", "320");
+    leftLeg.setAttribute("stroke", "#000");
+    leftLeg.setAttribute("stroke-width", "4");
+    svg.appendChild(leftLeg);
+
+    // Pierna derecha
+    var rightLeg = document.createElementNS(svgNS, "line");
+    rightLeg.setAttribute("x1", "300");
+    rightLeg.setAttribute("y1", "280");
+    rightLeg.setAttribute("x2", "320");
+    rightLeg.setAttribute("y2", "320");
+    rightLeg.setAttribute("stroke", "#000");
+    rightLeg.setAttribute("stroke-width", "4");
+    svg.appendChild(rightLeg);
+
+    // Pala: mango (línea) y pala (polígono)
+    var shovelHandle = document.createElementNS(svgNS, "line");
+    shovelHandle.setAttribute("x1", "330");
+    shovelHandle.setAttribute("y1", "260");
+    shovelHandle.setAttribute("x2", "370");
+    shovelHandle.setAttribute("y2", "260");
+    shovelHandle.setAttribute("stroke", "#654321");
+    shovelHandle.setAttribute("stroke-width", "4");
+    svg.appendChild(shovelHandle);
+
+    var shovelBlade = document.createElementNS(svgNS, "polygon");
+    shovelBlade.setAttribute("points", "370,250 390,265 370,280");
+    shovelBlade.setAttribute("fill", "#654321");
+    svg.appendChild(shovelBlade);
+
+    // Texto que indica la construcción
+    var textElem = document.createElementNS(svgNS, "text");
+    textElem.setAttribute("x", "50%");
+    textElem.setAttribute("y", "390");
+    textElem.setAttribute("dominant-baseline", "middle");
+    textElem.setAttribute("text-anchor", "middle");
+    textElem.setAttribute("font-size", "24");
+    textElem.setAttribute("fill", "#333");
+    textElem.textContent = tabName + " content load is under construction";
+    svg.appendChild(textElem);
+
+    return svg;
 }

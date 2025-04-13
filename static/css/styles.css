@@ -283,10 +283,10 @@ body {
 /* 11. Tabs */
 .tabs {
     background: linear-gradient(to right, rgba(32, 249, 184, 0.4), rgba(32, 235, 252, 0.4));
-    min-height: 55px;
-    max-height: 55px;
-    height: 55px;
-    padding: 10px 16px 0 px;
+    min-height: 61px;
+    max-height: 61px;
+    height: 61px;
+    padding: 16px 16px 0 px;
     display: flex;
     align-items: center;
 }
@@ -326,10 +326,6 @@ body {
     text-overflow: ellipsis;
 }
 
-.tabs__link:hover {
-    background-color: #00d69b;
-}
-
 .tabs__link--active {
     background-color: #ffffff;
     color: #003c3c;
@@ -339,6 +335,24 @@ body {
     background-color: #5fc6a7;
     color: #ffffff;
 }
+
+/* Contenedor que ocupa toda la pantalla */
+#underConstructionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+}
+
+/* Hacemos el SVG responsivo */
+#underConstructionContainer svg {
+    max-width: 90%;
+    width: auto;
+    height: auto;
+}
+
 /* 12. Responsive styles */
 
 /* Mobile (up to 767px) */
@@ -368,21 +382,18 @@ body {
         width: 150px;
     }
     .header__login-user {
-        font-size: 10px;
+        font-size: 12px;
     }
     .header__user-button {
-        /* Reducimos el tamaño general y ancho máximo */
-        font-size: 9px;          /* Ahora el texto se muestra en 11px */
-        width: 100px;             /* Máximo ancho de 100px */
+        font-size: 9px;
+        width: 100px;  
         height: 30px;
-        padding: 0 4px;           /* Menos padding lateral */
-        justify-content: space-between; /* Se mantiene el espacio entre íconos y texto */
+        padding: 0 4px;
+        justify-content: space-between;
     }
-    /* Reducir el gap interno del texto */
     .header__user-button-text {
         margin: 0 4px;
     }
-    /* Ajustes para los íconos: tanto el del usuario como la flecha */
     .header__user-button-icon svg,
     .header__user-button-arrow svg {
         width: 18px;
@@ -393,7 +404,7 @@ body {
         font-size: 12px;
     }
     .tabs {
-        padding: 10px 16px 0 12px;
+        padding: 16px 16px 0 12px;
     }
     /* Aquí se modifica la lista de pestañas para ajustar el gap */
     .tabs__list {
@@ -446,7 +457,7 @@ body {
         font-size: 13px;
     }
     .tabs {
-        padding: 10px 16px 0 18px;
+        padding: 16px 16px 0 18px;
     }
     .tabs__link {
         font-size: 13px;
@@ -493,7 +504,7 @@ body {
         font-size: 15px;
     }
     .tabs {
-        padding: 10px 16px 0 24px;
+        padding: 16px 16px 0 24px;
     }
     .tabs__link {
         font-size: 15px;
