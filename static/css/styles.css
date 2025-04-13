@@ -350,7 +350,7 @@ body {
         font-size: 12px;          /* Increased mobile font size */
         line-height: 1.3;
         margin-left: 12px;
-        width: 80px;              /* Fixed width for mobile */
+        width: 60px;              /* Fixed width for mobile */
     }
     .header__competition {
         font-size: 18px;          /* Mobile font size */
@@ -358,7 +358,7 @@ body {
         padding: 0 8px;
     }
     .header__login {
-        width: 80px;              /* Fixed width for mobile */
+        width: 70px;              /* Fixed width for mobile */
         justify-content: flex-end;
     }
     .header__login-text {
@@ -371,9 +371,22 @@ body {
         font-size: 10px;
     }
     .header__user-button {
-        font-size: 11px;
-        width: 130px;
+        /* Reducimos el tamaño general y ancho máximo */
+        font-size: 11px;          /* Ahora el texto se muestra en 11px */
+        width: 100px;             /* Máximo ancho de 100px */
         height: 30px;
+        padding: 0 4px;           /* Menos padding lateral */
+        justify-content: space-between; /* Se mantiene el espacio entre íconos y texto */
+    }
+    /* Reducir el gap interno del texto */
+    .header__user-button-text {
+        margin: 0 4px;
+    }
+    /* Ajustes para los íconos: tanto el del usuario como la flecha */
+    .header__user-button-icon svg,
+    .header__user-button-arrow svg {
+        width: 12px;
+        height: 12px;
     }
     .header__user-dropdown-item,
     .header__login-username {
