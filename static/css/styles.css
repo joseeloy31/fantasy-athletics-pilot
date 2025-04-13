@@ -1,0 +1,484 @@
+/* 1. Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 2. @keyframes */
+@keyframes shake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-10px); }
+    40%  { transform: translateX(10px); }
+    60%  { transform: translateX(-10px); }
+    80%  { transform: translateX(10px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.3s;
+}
+
+/* 3. Base body styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 10px;
+    font-weight: 300;
+}
+
+/* 4. Header */
+.header {
+    height: 45px;
+    background: linear-gradient(to right, #20f9b8, #20ebfc);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 18px;
+    position: relative;
+}
+
+/* 5. Title block (Desktop defaults) */
+.header__title {
+    color: #6a0dad;
+    font-size: 16px;          /* Increased desktop font size */
+    line-height: 1.4;         /* Desktop line-height */
+    font-weight: 600;
+    margin-left: 24px;        /* Desktop left margin */
+    display: flex;
+    align-items: center;
+    width: 150px;             /* Fixed width for desktop */
+}
+
+/* 6. Competition block (Desktop defaults) */
+.header__competition {
+    color: #6a0dad;
+    font-size: 24px;          /* Desktop font size */
+    line-height: 1.4;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Center text horizontally */
+    padding: 0 16px;          /* Horizontal padding */
+    flex-grow: 1;             /* Occupies available space */
+    text-align: center;
+}
+
+/* 7. Login block (Desktop defaults) */
+.header__login {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;   /* Align text to the right */
+    cursor: pointer;
+    gap: 8px;
+    transition: all 0.3s ease;
+    width: 150px;             /* Fixed width for desktop */
+}
+
+.header__login-icon {
+    width: 22px;
+    height: 22px;
+    color: #6a0dad;
+    transition: color 0.3s ease;
+}
+
+.header__login-text {
+    color: #6a0dad;
+    font-size: 11px;
+    font-weight: 300;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+/* Hover effect for the login block */
+.header__login:hover .header__login-text {
+    color: #380042;
+    font-weight: 500;
+}
+
+.header__login:hover .header__login-icon {
+    color: #380042;
+}
+
+/* When dropdown is open, change color of login block */
+.header__login.dropdown-open .header__login-text,
+.header__login.dropdown-open .header__login-icon {
+    color: #ffffff;
+}
+
+/* 8. Login dropdown */
+.header__login-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 9px;
+    background-color: black;
+    display: none;
+    width: 180px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.header__login-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Clickable username inside login dropdown */
+.header__login-user {
+    padding: 8px 16px;
+    color: white;
+    font-size: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #ccc;
+    transition: background 0.3s ease;
+}
+
+.header__login-user:hover {
+    background-color: #555;
+}
+
+/* Container for the password input – no extra border */
+.header__login-password-container {
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Expandable password box */
+.header__login-password-box {
+    background-color: #444;
+    overflow: hidden;
+    transition: max-height 0.9s ease-out, padding-top 0.9s ease-out, padding-bottom 0.9s ease-out;
+    width: 100%;
+    max-height: 0;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+}
+
+/* Active state: expand password box and add vertical padding */
+.header__login-password-box.active {
+    max-height: 70px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+/* Password input styling */
+.header__login-input {
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #ffffff;
+    color: black;
+    font-size: 12px;
+    outline: none;
+    padding: 4px;
+}
+
+/* Scale icons inside the password box */
+.header__login-tick,
+.header__login-cross {
+    transform: scale(1.4);
+    cursor: pointer;
+}
+
+.header__login-tick path {
+    stroke: green;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.2s ease-in-out;
+}
+
+.header__login-tick:hover path {
+    stroke: #66ff66;
+}
+
+.header__login-cross path {
+    stroke: #b54747;
+    stroke-width: 2.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.2s ease-in-out;
+}
+
+.header__login-cross:hover path {
+    stroke: red;
+}
+
+/* 9. User button block */
+.header__user-button {
+    background-color: #380042;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    width: 150px;
+    height: 35px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    /* Initially hidden until authenticated */
+    display: none;
+}
+
+.header__user-button:hover {
+    background-color: #6a0dad;
+}
+
+.header__user-button-icon,
+.header__user-button-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__user-button-text {
+    flex: 1;
+    margin: 0 8px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* 10. User dropdown */
+.header__user-dropdown {
+    position: absolute;
+    top: 45px;
+    right: 9px;
+    background-color: black;
+    display: none;
+    width: 180px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.header__user-dropdown-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.header__user-dropdown-item,
+.header__login-username {
+    padding: 8px 16px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #fff;
+}
+
+.header__user-dropdown-item:hover {
+    background-color: #333;
+}
+
+/* 11. Tabs */
+.tabs {
+    background: linear-gradient(to right, rgba(32, 249, 184, 0.4), rgba(32, 235, 252, 0.4));
+    min-height: 55px;
+    max-height: 55px;
+    height: 55px;
+    padding: 10px 16px 0 24px;
+    display: flex;
+    align-items: center;
+}
+
+.tabs__list {
+    display: flex;
+    justify-content: flex-start;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+}
+
+.tabs__item {
+    margin: 0;
+}
+
+.tabs__link {
+    background-color: #00ffae;
+    color: #003c3c;
+    text-decoration: none;
+    padding: 0 18px;
+    min-height: 45px;
+    max-height: 45px;
+    height: 45px;
+    line-height: 45px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 15px;
+    border: none;
+    border-bottom: 4px solid transparent;
+    border-radius: 4px 4px 0 0;
+    transition: background-color 0.2s ease-in-out;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tabs__link:hover {
+    background-color: #00d69b;
+}
+
+.tabs__link--active {
+    background-color: #ffffff;
+    color: #003c3c;
+}
+
+.tabs__link--draft {
+    background-color: #5fc6a7;
+    color: #ffffff;
+}
+
+/* 12. Responsive styles */
+
+/* Mobile (up to 767px) */
+@media (max-width: 767px) {
+    .header {
+        padding-right: 12px;
+    }
+    .header__title {
+        font-size: 12px;          /* Increased mobile font size */
+        line-height: 1.3;
+        margin-left: 12px;
+        width: 80px;              /* Fixed width for mobile */
+    }
+    .header__competition {
+        font-size: 18px;          /* Mobile font size */
+        line-height: 1.1;         /* Reduced line-height to prevent overflow in multiple lines */
+        padding: 0 8px;
+    }
+    .header__login {
+        width: 80px;              /* Fixed width for mobile */
+        justify-content: flex-end;
+    }
+    .header__login-text {
+        font-size: 11px;
+    }
+    .header__login-dropdown {
+        width: 150px;
+    }
+    .header__login-user {
+        font-size: 10px;
+    }
+    .header__user-button {
+        font-size: 11px;
+        width: 130px;
+        height: 30px;
+    }
+    .header__user-dropdown-item,
+    .header__login-username {
+        font-size: 11px;
+    }
+    .tabs {
+        padding: 10px 16px 0 12px;
+    }
+    .tabs__link {
+        font-size: 12px;
+        padding: 0 10px;
+    }
+}
+
+/* Tablet (768px to 1079px) */
+@media (min-width: 768px) and (max-width: 1079px) {
+    .header {
+        padding-right: 18px;
+    }
+    .header__title {
+        font-size: 14px;          /* Increased tablet font size */
+        line-height: 1.3;
+        margin-left: 18px;
+        width: 120px;             /* Fixed width for tablet */
+    }
+    .header__competition {
+        font-size: 20px;          /* Tablet font size */
+        line-height: 1.2;
+        padding: 0 12px;
+    }
+    .header__login {
+        width: 120px;             /* Fixed width for tablet */
+        justify-content: flex-end;
+    }
+    .header__login-text {
+        font-size: 13px;
+    }
+    .header__login-dropdown {
+        width: 160px;
+    }
+    .header__login-user {
+        font-size: 11px;
+    }
+    .header__user-button {
+        font-size: 13px;
+        width: 140px;
+        height: 35px;
+    }
+    .header__user-dropdown-item,
+    .header__login-username {
+        font-size: 13px;
+    }
+    .tabs {
+        padding: 10px 16px 0 18px;
+    }
+    .tabs__link {
+        font-size: 13px;
+        padding: 0 14px;
+    }
+}
+
+/* Desktop (1080px and above) */
+@media (min-width: 1080px) {
+    .header {
+        padding-right: 24px;
+    }
+    .header__title {
+        font-size: 16px;
+        line-height: 1.4;
+        margin-left: 24px;
+        width: 150px;
+    }
+    .header__competition {
+        font-size: 24px;          /* Desktop font size */
+        line-height: 1.4;
+        padding: 0 16px;
+    }
+    .header__login {
+        width: 150px;             /* Fixed width for desktop */
+        justify-content: flex-end;
+    }
+    .header__login-text {
+        font-size: 15px;
+    }
+    .header__login-dropdown {
+        width: 180px;
+    }
+    .header__login-user {
+        font-size: 12px;
+    }
+    .header__user-button {
+        font-size: 15px;
+        width: 150px;
+        height: 35px;
+    }
+    .header__user-dropdown-item,
+    .header__login-username {
+        font-size: 15px;
+    }
+    .tabs {
+        padding: 10px 16px 0 24px;
+    }
+    .tabs__link {
+        font-size: 15px;
+        padding: 0 18px;
+    }
+}

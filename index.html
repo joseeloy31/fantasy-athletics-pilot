@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="./static/css/styles.css" />
+        <script src="./static/js/script.js" defer></script>
+        <title>Fantasy Athletics</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header__title">Fantasy Athletics</div>
+            <div class="header__competition"></div>
+            <!-- Login block (clickable until logged in) -->
+            <div class="header__login" id="loginBlock" onclick="toggleLoginDropdown()">
+                <svg class="header__login-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
+                    <path d="M0 0h24v24H0z" fill="none"/>
+                    <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z" fill="currentColor"/>
+                </svg>
+                <span class="header__login-text">Log in</span>
+            </div>
+            <!-- Logged in user button, initially hidden -->
+            <button class="header__user-button" id="userButton" style="display: none;">
+                <!-- User icon (left) -->
+                <span class="header__user-button-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="#fff">
+                        <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5z"/>
+                        <path d="M12 14c-4 0-7 2-7 4v2h14v-2c0-2-3-4-7-4z"/>
+                    </svg>
+                </span>
+                <!-- Username text (center) -->
+                <span class="header__user-button-text" id="userButtonText"></span>
+                <!-- Dropdown arrow (right) -->
+                <span class="header__user-button-arrow">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24" width="24" viewBox="0 0 24 24" fill="#fff">
+                        <path d="M7 10l5 5 5-5z"/>
+                    </svg>
+                </span>
+            </button>
+                
+            <!-- Dropdown for the user button with the logout option, initially hidden -->
+            <div class="header__user-dropdown" id="userDropdown" style="display: none;">
+                <ul class="header__user-dropdown-list">
+                    <li class="header__user-dropdown-item" onclick="logoutUser()">Logout</li>
+                </ul>
+                </div>
+            <!-- Dropdown container for login -->
+            <div class="header__login-dropdown" id="loginDropdown">
+                <ul>
+                    <!-- For each user, two list items: one for the username and one for the password box -->
+                    <!-- User 1 -->
+                    <li class="header__login-user" onclick="togglePasswordBox(this)">
+                        <span class="header__login-username">Eloy</span>
+                    </li>
+                    <li class="header__login-password-container">
+                        <div class="header__login-password-box">
+                            <input type="password" placeholder="enter password" class="header__login-input" />
+                            <svg class="header__login-tick" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="header__login-cross" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 6l12 12" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </li>
+                    <!-- User 2 -->
+                    <li class="header__login-user" onclick="togglePasswordBox(this)">
+                        <span class="header__login-username">Pilar</span>
+                    </li>
+                    <li class="header__login-password-container">
+                        <div class="header__login-password-box">
+                            <input type="password" placeholder="enter password" class="header__login-input" />
+                            <svg class="header__login-tick" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="header__login-cross" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 6l12 12" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </li>
+                    <!-- User 3 -->
+                    <li class="header__login-user" onclick="togglePasswordBox(this)">
+                        <span class="header__login-username">Tony F</span>
+                    </li>
+                    <li class="header__login-password-container">
+                        <div class="header__login-password-box">
+                            <input type="password" placeholder="enter password" class="header__login-input" />
+                            <svg class="header__login-tick" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="header__login-cross" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 6l12 12" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </li>
+                    <!-- User 4 -->
+                    <li class="header__login-user" onclick="togglePasswordBox(this)">
+                        <span class="header__login-username">Marco</span>
+                    </li>
+                    <li class="header__login-password-container">
+                        <div class="header__login-password-box">
+                            <input type="password" placeholder="enter password" class="header__login-input" />
+                            <svg class="header__login-tick" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="header__login-cross" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 6l12 12" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </li>
+                    <!-- User 5 -->
+                    <li class="header__login-user" onclick="togglePasswordBox(this)">
+                        <span class="header__login-username">Julian M</span>
+                    </li>
+                    <li class="header__login-password-container">
+                        <div class="header__login-password-box">
+                            <input type="password" placeholder="enter password" class="header__login-input" />
+                            <svg class="header__login-tick" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="header__login-cross" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 6l12 12" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </li>
+                    <!-- User 6 -->
+                    <li class="header__login-user" onclick="togglePasswordBox(this)">
+                        <span class="header__login-username">David</span>
+                    </li>
+                    <li class="header__login-password-container">
+                        <div class="header__login-password-box">
+                            <input type="password" placeholder="enter password" class="header__login-input" />
+                            <svg class="header__login-tick" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="header__login-cross" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 6l12 12" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </li>
+                    <!-- User 7 -->
+                    <li class="header__login-user" onclick="togglePasswordBox(this)">
+                        <span class="header__login-username">Denise</span>
+                    </li>
+                    <li class="header__login-password-container">
+                        <div class="header__login-password-box">
+                            <input type="password" placeholder="enter password" class="header__login-input" />
+                            <svg class="header__login-tick" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.5-1.5z" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <svg class="header__login-cross" width="16" height="16" viewBox="0 0 24 24">
+                                <path d="M18 6L6 18" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M6 6l12 12" stroke="#b54747" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <nav class="tabs">
+            <ul class="tabs__list">
+              <li class="tabs__item"><a href="#" class="tabs__link tabs__link--active">My Team</a></li>
+              <li class="tabs__item"><a href="#" class="tabs__link">Athletes</a></li>
+              <li class="tabs__item"><a href="#" class="tabs__link">Results</a></li>
+              <li class="tabs__item"><a href="#" class="tabs__link">Standings</a></li>
+              <li class="tabs__item"><a href="#" class="tabs__link">More Games</a></li>
+            </ul>
+        </nav>
+    </body>
+</html>
