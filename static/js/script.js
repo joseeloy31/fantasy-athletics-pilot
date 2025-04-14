@@ -45,11 +45,165 @@ const fat_user = [
 ];
 
 const data = {
-    "group_competitions": [
-        "Diamond League 2025",
-        "Grand Slam Track 2025"
+    "competition_groups": [
+        {
+            "group_name": "Diamond League 2025",
+            "start_date": "20250426 00:00:00",
+            "end_date": "20250828 23:59:59",
+            "next_event_date": "20250426 00:00:00",
+            "competitions": [
+                {
+                    "event_name": "Xiamen",
+                    "event_start_date": "20250426 00:00:00"
+                },
+                {
+                    "event_name": "Shanghai/Keqiao",
+                    "event_start_date": "20250503 00:00:00"
+                },
+                {
+                    "event_name": "Doha",
+                    "event_start_date": "20250516 00:00:00"
+                },
+                {
+                    "event_name": "Rabat",
+                    "event_start_date": "20250525 00:00:00"
+                },
+                {
+                    "event_name": "Rome",
+                    "event_start_date": "20250606 00:00:00"
+                },
+                {
+                    "event_name": "Oslo",
+                    "event_start_date": "20250612 00:00:00"
+                },
+                {
+                    "event_name": "Stockholm",
+                    "event_start_date": "20250615 00:00:00"
+                },
+                {
+                    "event_name": "Paris",
+                    "event_start_date": "20250620 00:00:00"
+                },
+                {
+                    "event_name": "Eugene",
+                    "event_start_date": "20250705 00:00:00"
+                },
+                {
+                    "event_name": "Monaco",
+                    "event_start_date": "20250711 00:00:00"
+                },
+                {
+                    "event_name": "London",
+                    "event_start_date": "20250719 00:00:00"
+                },
+                {
+                    "event_name": "Silesia",
+                    "event_start_date": "20250816 00:00:00"
+                },
+                {
+                    "event_name": "Lausanne",
+                    "event_start_date": "20250820 00:00:00"
+                },
+                {
+                    "event_name": "Brussels",
+                    "event_start_date": "20250822 00:00:00"
+                },
+                {
+                    "event_name": "Final in Zurich",
+                    "event_start_date": "20250827 00:00:00"
+                }
+            ]
+        },
+        {
+            "group_name": "Grand Slam Track 2025",
+            "start_date": "20250405 00:30:00",
+            "end_date": "20250629 23:00:00",
+            "next_event_date": "20250502 23:00:00",
+            "competitions": [
+                {
+                    "event_name": "Kingston",
+                    "event_start_date": "20250405 00:30:00"
+                },
+                {
+                    "event_name": "Miami",
+                    "event_start_date": "20250502 23:00:00"
+                },
+                {
+                    "event_name": "Philadelphia",
+                    "event_start_date": "20250530 23:00:00"
+                },
+                {
+                    "event_name": "Los Angeles",
+                    "event_start_date": "20250628 00:30:00"
+                }
+            ]
+        },
+        {
+            "group_name": "Diamond League 2024",
+            "start_date": "20240420 00:00:00",
+            "end_date": "20240914 23:59:59",
+            "next_event_date": "20240914 23:59:59",
+            "competitions": [
+                {
+                    "event_name": "Xiamen",
+                    "event_start_date": "20240420 00:00:00"
+                },
+                {
+                    "event_name": "Shanghai/Suzhou",
+                    "event_start_date": "20240427 00:00:00"
+                },
+                {
+                    "event_name": "Doha",
+                    "event_start_date": "20240510 00:00:00"
+                },
+                {
+                    "event_name": "Rabat/Marrakech",
+                    "event_start_date": "20240519 00:00:00"
+                },
+                {
+                    "event_name": "Eugene",
+                    "event_start_date": "20240525 00:00:00"
+                },
+                {
+                    "event_name": "Oslo",
+                    "event_start_date": "20240530 00:00:00"
+                },
+                {
+                    "event_name": "Stockholm",
+                    "event_start_date": "20240602 00:00:00"
+                },
+                {
+                    "event_name": "Paris",
+                    "event_start_date": "20240707 00:00:00"
+                },
+                {
+                    "event_name": "Monaco",
+                    "event_start_date": "20240712 00:00:00"
+                },
+                {
+                    "event_name": "London",
+                    "event_start_date": "20240720 00:00:00"
+                },
+                {
+                    "event_name": "Lausanne",
+                    "event_start_date": "20240822 00:00:00"
+                },
+                {
+                    "event_name": "Silesia",
+                    "event_start_date": "20240825 00:00:00"
+                },
+                {
+                    "event_name": "Rome",
+                    "event_start_date": "20240830 00:00:00"
+                },
+                {
+                    "event_name": "Zurich",
+                    "event_start_date": "20240913 00:00:00"
+                }
+            ]
+        }
     ]
-}
+};
 
 document.addEventListener('DOMContentLoaded', function() {
 
@@ -66,10 +220,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Insert the first competition name from the constant data into the header competition element.
-    if (typeof data !== 'undefined' && data.group_competitions && data.group_competitions.length > 0) {
-        document.querySelector('.header__competition').textContent = data.group_competitions[0];
+    if (typeof data !== 'undefined' && data.competition_groups && data.competition_groups.length > 0) {
+        document.querySelector('.header__competition').textContent = data.competition_groups[0].group_name;
     }
-    
+        
     // Listener for the tick icon: validation on click
     document.querySelectorAll('.header__login-tick').forEach(function(tick) {
         tick.addEventListener('click', function(e) {
@@ -301,8 +455,19 @@ var tabFunctions = {
     moregames: loadMoreGamesTab
 };
 
+function setActiveTab(tabName) {
+    var tabsLinks = document.querySelectorAll('.tabs__link');
+    tabsLinks.forEach(function(link) {
+        link.classList.remove('tabs__link--active');
+        if (link.getAttribute('data-tab') === tabName) {
+            link.classList.add('tabs__link--active');
+        }
+    });
+}
+
 function loadMyTeamTab() {
     var container = document.getElementById("tabContent");
+    setActiveTab('myteam');
     container.innerHTML = "";
     container.appendChild(createUnderConstructionSVG("My Team"));
 }
@@ -328,7 +493,32 @@ function loadStandingsTab() {
 function loadMoreGamesTab() {
     var container = document.getElementById("tabContent");
     container.innerHTML = "";
-    container.appendChild(createUnderConstructionSVG("More Games"));
+
+    var competitionsContainer = document.createElement("div");
+    competitionsContainer.classList.add("competitions");
+
+    data.competition_groups.forEach(function(group) {
+        var groupRow = document.createElement("div");
+        groupRow.classList.add("competitions__group");
+
+        var groupButton = document.createElement("button");
+        groupButton.classList.add("competitions__group-button");
+        groupButton.textContent = group.group_name;
+
+        groupButton.addEventListener("click", function() {
+            var headerCompetition = document.querySelector(".header__competition");
+            if (headerCompetition) {
+                headerCompetition.textContent = group.group_name;
+            }  
+
+            loadMyTeamTab();
+        });
+
+        groupRow.appendChild(groupButton);
+        competitionsContainer.appendChild(groupRow);
+    });
+
+    container.appendChild(competitionsContainer);
 }
 
 function createUnderConstructionSVG(tabName) {

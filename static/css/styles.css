@@ -61,6 +61,7 @@ body {
     padding: 0 16px;          /* Horizontal padding */
     flex-grow: 1;             /* Occupies available space */
     text-align: center;
+    transition: opacity 0.3s ease-in-out;    
 }
 
 /* 7. Login block (Desktop defaults) */
@@ -353,8 +354,48 @@ body {
     height: auto;
 }
 
-/* 12. Responsive styles */
+/* 12. More Games Tab */
+.competitions {
+    display: grid;
+    grid-template-columns: repeat(3, 300px);
+    gap: 38px;                              
+    padding: 16px 24px;
+    max-width: 976px;                       
+    margin: 0 auto;                         
+    justify-content: center;
+}
 
+.competitions__group {
+    display: flex;
+    justify-content: center;
+}
+
+.competitions__group-button {
+    background: linear-gradient(to right, #20f9b8, #20ebfc);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #6a0dad;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    min-width: 300px;
+}
+
+.competitions__group-button:hover {
+    background-color: #00e6a1;
+}
+
+.competitions__group-dates {
+    font-size: 16px;
+    color: #003c3c;
+}
+
+/* 12. Responsive styles */
 /* Mobile (up to 767px) */
 @media (max-width: 767px) {
     .header {
@@ -416,6 +457,22 @@ body {
         line-height: 1.4;
         white-space: normal;
     }
+    .competitions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 16px 12px;
+        gap: 16px;
+    }
+    .competitions__group {
+        justify-content: center;
+    }
+    .competitions__group-button {
+        font-size: 14px;
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+    }
 }
 
 /* Tablet (768px to 1079px) */
@@ -462,6 +519,12 @@ body {
     .tabs__link {
         font-size: 13px;
         padding: 0 14px;
+    }
+    .competitions {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 24px;
+        padding: 16px 24px;
+        max-width: 100%;
     }
 }
 
